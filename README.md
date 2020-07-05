@@ -12,3 +12,7 @@ This takes a 'dumb' optical smoke alarm and adds MQTT capability, my usage is fo
 If the detector notices smoke, it sends a MQTT message to the broker. Via node red this sends a MQTT message to a Sonoff S20 smart plug, killing the power.
 Also via node red it notifies me via my phone (I use Blynk app, you can use whatever you want).
 
+
+![alt text](https://github.com/877dev/smart-smoke-alarm/blob/master/2020-07-04%2019.01.43.jpg)
+
+![alt text](https://github.com/877dev/smart-smoke-alarm/blob/master/2020-07-04%2015.38.37.jpg)
