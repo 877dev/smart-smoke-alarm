@@ -2,9 +2,9 @@
 Retrofit Fireangel smoke alarm with Wemos D1 mini
 
 Hardware:
-Wemos D1 mini
-FireAngel SB1-TP-R Smoke Alarm
-390K resistor
+Wemos D1 mini,  
+FireAngel SB1-TP-R Smoke Alarm,  
+390K resistor,  
 2 x 680K resistors
 
 Description:
