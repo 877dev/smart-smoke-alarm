@@ -16,3 +16,5 @@ Also via node red it notifies me via my phone (I use Blynk app, you can use what
 ![alt text](https://github.com/877dev/smart-smoke-alarm/blob/master/2020-07-04%2019.01.43.jpg)
 
 ![alt text](https://github.com/877dev/smart-smoke-alarm/blob/master/2020-07-04%2015.38.37.jpg)
+
+![alt text](https://github.com/877dev/smart-smoke-alarm/blob/master/Proposed%20wiring%20photo.jpg)
