@@ -1,0 +1,93 @@
+My findings:
+
+Pin 7 is normally at 0V, pulled low via internal 280k resistor.
+
+Upon local alarm, pin 7 is driven high to aprox 8-8.5V constant current.
+
+Connecting pin 7 to 9V supply results in a "remote" alarm situation and sets off the sounder. Datasheet says protection for higher voltage is provided (section 3.5).
+
+--------------------------
+
+
+Calculations:
+9V battery readings (new)
+9.36V Duracell
+9.64V Varta
+No volt drop when connected to smoke alarm.
+Allow for 10V max to analogue in.
+
+(220K+ R1)/100K voltage divider
+So R1 needs to be 900-220 = 680K
+---------------------------------
+
+
+Ideas:
+
+Monitoring only:
+Connect pin 7 IO to Arduino data pin via voltage divider.
+
+Interconnect alarms via MQTT:
+One alarm activation sends signal to MQTT broker. Node red configured to pass signal onto all other devices. Each Arduino has output pin to npn transistor, CE connected to 9V and pin 7. i.e. shorting IO pin 7 to 9V.
+
+Low battery monitoring:
+Voltage divider from 0V & 9V which goes to analogue pin of Arduino, sends MQTT message when lower than x volts.
+
+
+----------------------------
+
+Datasheet info:
+
+
+RE46C165/6/7/8
+PDIP, SOIC Symbol Function
+1 C1 High Gain Capacitor Pin
+2 C2 Normal Gain Capacitor Pin
+3 DETECT Photo Diode Input
+4 STROBE Strobed Detection Negative Supply
+5 VDD Positive Power Supply
+6 IRED Infrared Emitting Diode Pin
+7 IO Interconnect Pin
+8 HB Horn Brass, Inverted Output
+9 HS Horn Silver Output
+10 FEED Horn Feedback Pin
+11 LED LED Driver Pin
+12 COSC Oscillator Capacitor Input
+13 ROSC Oscillator Resistor Drive Low
+14 VSS Negative Power Supply
+15 VSEN Hush Timer Sensitivity Pin
+16 TEST Test Pin
+
+
+2.6 Interconnect Pin (I/O)
+This bidirectional pin provides the capability to
+interconnect many detectors in a single system. This
+pin has an internal pull-down device.
+
+3.5 Interconnect
+The bidirectional I/O pin allows the interconnection of
+multiple detectors. In a local alarm condition, this pin is
+driven high immediately through a constant current
+source. Shorting this output to ground will not cause
+excessive current. The I/O is ignored as an input during
+a local alarm.
+The I/O pin has a 280k nominal pull-down resistor, so
+the pin may be left unconnected.
+The I/O pin also has an NMOS discharge device that is
+active for 1 second after the conclusion of any type of
+local alarm. This device helps to quickly discharge any
+capacitance associated with the interconnect line.
+If a remote active high signal is detected, the device
+goes into remote alarm and the horn will be active.
+Internal protection circuitry allows for the signaling unit
+to have a higher supply voltage than the signaled unit,
+without excessive current draw.
+The interconnect input has a digital filter that ensures
+filtering out pulses of up to 300 ms. Filter pulses will be
+ignored and not affect internal timing of the part. This
+allows for interconnection to other types of alarms
+(carbon monoxide for example) that may have a pulsed
+interconnect signal.
+The remote alarm delay (370 ms to 1.27s) specifies the
+time from the interconnect going active to sounding the
+piezo horn alarm.
+
